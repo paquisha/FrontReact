@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_AUTH;
 
-class AuthService {
+const AuthService = {
   login(username, password) {
     return axios
       .post(API_URL + "signin", {
@@ -16,11 +16,11 @@ class AuthService {
 
         return response.data;
       });
-  }
+  },
 
   logout() {
     localStorage.removeItem("user");
-  }
+  },
 
   register(username, email, password) {
     return axios.post(API_URL + "signup", {
@@ -28,11 +28,11 @@ class AuthService {
       email,
       password
     });
-  }
+  },
 
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));;
   }
 }
 
-export default new AuthService();
+export default AuthService;
